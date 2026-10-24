@@ -1,0 +1,22 @@
+def bi(zh,en): return {'zh':zh,'en':en}
+
+CASE = {
+ 'id':'candy-and-nest','name':'Candy & Nest','type':'growth',
+ 'image':'candy-house','second':'candy-tree',
+ 'category':bi('节庆家居 · 季节性产品运营','HOLIDAY DÉCOR · SEASONAL COMMERCE'),
+ 'title':bi('围绕节日节奏，组织产品与销售。','Planning products and commerce around the holiday season.'),
+ 'intro':bi('以圣诞家居装饰为核心的消费品牌，通过姜饼屋、节日树与挂饰等商品系列，连接节日氛围与家庭装饰需求。','A consumer brand focused on Christmas home décor, connecting festive inspiration with home decorating through gingerbread houses, holiday trees and ornaments.')
+}
+
+def render(lang,url,img,cta,button):
+ c=CASE
+ body='<section class="case-head wrap"><a class="back" href="'+url(lang,'work')+'">← '+bi('全部案例','All work')[lang]+'</a><p class="eyebrow">'+c['category'][lang]+'</p><div class="case-heading"><h1>Candy &amp; Nest</h1><p>'+c['title'][lang]+'</p></div><p class="lead">'+c['intro'][lang]+'</p></section>'
+ body+='<div class="wrap detail-cover candy-and-nest">'+img('candy-house',bi('Candy & Nest 姜饼屋节庆场景','Candy & Nest gingerbread village display')[lang],eager=True)+'</div>'
+ body+='<section class="case-story wrap"><aside><p class="eyebrow">CLIENT SPOTLIGHT</p><h3>Candy &amp; Nest</h3><p>'+c['category'][lang]+'</p><a class="text-link" href="https://candyandnest.com/" target="_blank" rel="noopener noreferrer">'+bi('访问品牌官网','Visit the brand website')[lang]+' ↗</a></aside><div><h2>'+bi('把节日灵感，变成清晰的选购路径。','From festive inspiration to a clear shopping journey.')[lang]+'</h2><p>'+bi('季节性商品的经营，需要同时考虑产品主题、消费者的准备节奏和有限的销售窗口。Candy & Nest 的商品呈现，为这一类业务提供了具体的观察视角。','Seasonal commerce brings together product themes, customers’ preparation habits and a limited selling window. Candy & Nest offers a concrete perspective on this kind of business.')[lang]+'</p><h2>'+bi('品牌呈现中的运营重点','Commerce in the brand experience')[lang]+'</h2><ul>'
+ points=bi(['以姜饼村、节日树、甜美圣诞和粉彩圣诞等主题，组织不同装饰风格。','同时按发光装饰、桌面摆件与挂饰等产品类型分类，方便消费者按用途寻找商品。','让节庆场景图片、商品价格和购买入口相互衔接，兼顾装饰灵感与选购需求。'],['Theme-led collections organize different decorating styles, from Gingerbread Village and Holiday Trees to Sweet Christmas and Pastel Christmas.','Product categories such as light-up décor, tabletop décor and ornaments help shoppers browse by use.','Seasonal imagery, product prices and purchase links connect decorating inspiration with shopping.'])[lang]
+ body+=''.join('<li>'+p+'</li>' for p in points)+'</ul></div></section>'
+ body+='<section class="seasonal-method wrap"><p class="eyebrow">OUR SEASONAL COMMERCE APPROACH</p><h2>'+bi('围绕一个销售季，<br>安排每一步。','Plan each step<br>around the selling season.')[lang]+'</h2><p class="lead">'+bi('我们的季节性运营思路：将商品、内容和销售节奏一起规划，并根据业务阶段确定具体工作范围。','Our approach to seasonal commerce: plan products, content and selling rhythms together, with the scope tailored to each business stage.')[lang]+'</p><ol class="seasonal-steps">'
+ stages=bi([('季前准备','梳理目标客群、商品主题与价格层次，并评估上新和履约所需的准备时间。'),('上新与预热','围绕系列主题组织商品页面和场景内容，让消费者提前找到装饰灵感。'),('旺季销售','结合商品表现与库存情况，调整展示重点、推广节奏和服务信息。'),('季末复盘','复盘系列表现、用户反馈与剩余库存，为下一销售季积累依据。')],[('Before the season','Review audiences, collection themes and price points, alongside the lead times needed for launch and fulfillment.'),('Launch & anticipation','Organize product pages and lifestyle content around collection themes to support early discovery.'),('Peak-season selling','Adapt merchandising, promotional timing and service information to product performance and stock availability.'),('After the season','Review collection performance, customer feedback and remaining inventory to inform the next season.')])[lang]
+ body+=''.join(f'<li><span class="step-number">0{i+1}</span><h3>{title}</h3><p>{text}</p></li>' for i,(title,text) in enumerate(stages))+'</ol></section>'
+ body+='<section class="wrap seasonal-gallery"><figure>'+img('candy-tree',bi('Candy & Nest 圣诞树与姜饼装饰系列','Candy & Nest holiday trees and gingerbread décor')[lang])+'<figcaption>'+bi('Holiday Trees · 节日树系列','Holiday Trees collection')[lang]+'</figcaption></figure><div><p class="eyebrow">SEASONAL PRODUCTS, COHERENT COLLECTIONS</p><h2>'+bi('让系列之间有联系，<br>让选购更有方向。','Connected collections.<br>Purposeful discovery.')[lang]+'</h2><p class="lead">'+bi('以共同的节日主题和场景语言串联商品，让消费者从单件产品延伸到整体装饰方案。','A shared seasonal theme and visual language can connect individual products with a broader decorating idea.')[lang]+'</p>'+button(url(lang,'services')+'#service-3',bi('了解电商与渠道服务','Explore e-commerce services')[lang])+'</div></section>'+cta(lang)
+ return body
